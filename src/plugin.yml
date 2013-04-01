@@ -1,0 +1,6 @@
+name: Logger Extreme
+version: 0.9.6_1
+description: Logs everything.
+author: Joshwarfield
+authors: [Joshwarfield, ColesServer, SimonColes]
+main: jwf.bukkit.loggerExtreme.LoggerExtreme
