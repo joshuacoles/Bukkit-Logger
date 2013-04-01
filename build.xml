@@ -1,0 +1,63 @@
+<project name="Build" default="upload" basedir=".">
+    <description>
+        simple example build file
+    </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <!--<property name="server" location="minecraft.coles.to"/>-->
+
+    <!-- Last call -->
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+    </target>
+
+    <target name="clean" depends="init"
+            description="clean up">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+    <!-- Third call -->
+    <target name="setup" depends="clean">
+        <!-- Create the time stamp -->
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}/lib"/>
+    </target>
+
+    <!-- Second call -->
+    <target name="compile" depends="setup"
+            description="compile the source ">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}" destdir="${build}" classpath="../../Lib/[LIB]Bukkit.jar:../../Lib/commons-io-2.4.jar"/>
+        <copy file="${src}/plugin.yml" todir="${build}"/>
+    </target>
+
+    <!-- First call -->
+    <target name="dist" depends="compile"
+            description="generate the distribution">
+        <!-- Create the distribution directory -->
+
+        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+
+        <jar destfile="${dist}/lib/LoggerExtreme.jar" basedir="${build}"/>
+
+    </target>
+
+    <target name="upload" depends="dist" description="uploads the distribution">
+
+        <!--<sshexec host="${server}"-->
+                 <!--username="mc"-->
+                 <!--keyfile="${user.home}/.ssh/id_rsa"-->
+                 <!--command="rm -f minecraft/plugins/LoggerExtreme.jar"/>-->
+        <scp host="minecraft.coles.to" keyfile="${user.home}/.ssh/id_rsa" localfile="${dist}/lib/LoggerExtreme.jar" remotetodir="mc@minecraft.coles.to:minecraft/plugins" />
+
+    </target>
+
+
+</project>
