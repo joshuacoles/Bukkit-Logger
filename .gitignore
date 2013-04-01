@@ -1,5 +1,11 @@
 *.class
 
+# Custom stuff #
+.idea
+build
+dist
+out
+
 # Package Files #
 *.jar
 *.war
