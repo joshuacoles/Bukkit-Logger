@@ -36,7 +36,6 @@ public class LogListener implements Listener {
         printToBlockLog(getDate() + "|Block " + event.getBlock().getTypeId() + ":" + event.getBlock().getData() + " placed at " + formatLoc(event.getBlock().getLocation()) + " by " + event.getPlayer().getDisplayName());
 //        say(getDate() + "|Block " + event.getBlock().getTypeId() + ":" + event.getBlock().getData() + " placed at " + formatLoc(event.getBlock().getLocation()) + " by " + event.getPlayer().getDisplayName());
     }
-
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onBlockDestroy(BlockBreakEvent event) {
@@ -50,19 +49,19 @@ public class LogListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onPlayChat(AsyncPlayerChatEvent event) {
-        printToPlayerLog(getDate() + "|< " + event.getPlayer().getDisplayName() + " > " + event.getMessage());
+        printToPlayerLog(getDate() + "|< " + getPlayerName(event.getPlayer()) + " > " + event.getMessage());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onPlayerLogin(PlayerLoginEvent event) {
-        printToPlayerLog(getDate() + "|" + event.getPlayer().getDisplayName() + " Logged in at " + formatLoc(event.getPlayer().getLocation()));
+        printToPlayerLog(getDate() + "|" + getPlayerName(event.getPlayer()) + " Logged in at " + formatLoc(event.getPlayer().getLocation()));
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onPlayerLogOut(PlayerQuitEvent event) {
-        printToPlayerLog(getDate() + "|" + event.getPlayer().getDisplayName() + " Exited the game at " + formatLoc(event.getPlayer().getLocation()) + " because " + event.getQuitMessage());
+        printToPlayerLog(getDate() + "|" + getPlayerName(event.getPlayer()) + " Exited the game at " + formatLoc(event.getPlayer().getLocation()) + " because " + event.getQuitMessage());
     }
 
 //    @EventHandler(priority = EventPriority.MONITOR)
@@ -72,13 +71,13 @@ public class LogListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onPlayerKick(PlayerKickEvent event) {
-        printToPlayerLog(getDate() + "|" + event.getPlayer().getDisplayName() + " Was kicked for " + event.getReason());
+        printToPlayerLog(getDate() + "|" + getPlayerName(event.getPlayer()) + " Was kicked for " + event.getReason());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     @SuppressWarnings("unused")
     public void onPlayerDeath(PlayerDeathEvent event) {
-        printToPlayerLog(getDate() + "|" + event.getEntity().getDisplayName() + " Died at " + formatLoc(event.getEntity().getLocation()) + " because " + event.getDeathMessage());
+        printToPlayerLog(getDate() + "|" + getPlayerName(event.getEntity()) + " Died at " + formatLoc(event.getEntity().getLocation()) + " because " + event.getDeathMessage());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -86,7 +85,7 @@ public class LogListener implements Listener {
     public void onPlayerHurtByPlayer(EntityDamageByEntityEvent event) {
 
         if (event.getDamager().getType() == EntityType.PLAYER && event.getEntityType() == EntityType.PLAYER) {
-            printToPlayerLog(getDate() + "|" + ((Player) event.getEntity()).getDisplayName() + " Was damaged by " + ((Player) event.getEntity()).getDisplayName());
+            printToPlayerLog(getDate() + "|" + getPlayerName((Player) event.getEntity())+ " Was damaged by " + ((Player) event.getEntity()).getDisplayName());
         }
 
     }
