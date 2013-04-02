@@ -5,6 +5,7 @@
 build
 dist
 out
+build.xml
 
 # Package Files #
 *.jar
