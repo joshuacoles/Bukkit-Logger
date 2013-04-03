@@ -1,7 +1,8 @@
 package jwf.bukkit.loggerExtreme;
 
 import org.bukkit.plugin.java.JavaPlugin;
-
+import static jwf.bukkit.loggerExtreme.Util.initFiles;
+import static jwf.bukkit.loggerExtreme.Util.rotateLogs;
 /**
  * User: joshuac
  * Date: 30/03/2013
@@ -17,6 +18,7 @@ public final class LoggerExtreme extends JavaPlugin {
     @Override
     public void onDisable() {
         System.out.println("================================|Logger Extreme Disabling|================================");
+        rotateLogs();
     }
 
     @Override
@@ -24,6 +26,6 @@ public final class LoggerExtreme extends JavaPlugin {
         System.out.println("================================|Logger Extreme Enabling|================================");
         LogListener listener = new LogListener();
         getServer().getPluginManager().registerEvents(listener, this);
-        Util.initFiles();
+        initFiles();
     }
 }
