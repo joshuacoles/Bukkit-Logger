@@ -4,6 +4,7 @@
 .idea
 build.xml
 private.properties
+project/build
 
 # Package Files #
 *.jar
