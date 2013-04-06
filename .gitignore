@@ -2,10 +2,8 @@
 
 # Custom stuff #
 .idea
-build
-dist
-out
 build.xml
+private.properties
 
 # Package Files #
 *.jar
